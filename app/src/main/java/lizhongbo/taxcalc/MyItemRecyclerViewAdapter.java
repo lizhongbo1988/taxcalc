@@ -13,10 +13,10 @@ import java.util.List;
 
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<HistoryContent.HistoryItem> mValues;
+    private final List<History> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<HistoryContent.HistoryItem> items, OnListFragmentInteractionListener listener) {
+    public MyItemRecyclerViewAdapter(List<History> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -31,19 +31,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.minComeView.setText(mValues.get(position).income);
-        holder.mTaxView.setText(mValues.get(position).tax);
-//
-//        holder.mView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (null != mListener) {
-//                    // Notify the active callbacks interface (the activity, if the
-//                    // fragment is attached to one) that an item has been selected.
-//                    mListener.onListFragmentInteraction(holder.mItem);
-//                }
-//            }
-//        });
+        holder.minComeView.setText(mValues.get(position).getIncome());
+        holder.mTaxView.setText(mValues.get(position).getTax());
+        holder.mYingfaView.setText(mValues.get(position).getTax() - mValues.get(position).getTax());
     }
 
     @Override
@@ -55,7 +45,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final TextView mYingfaView;
         public final TextView minComeView;
         public final TextView mTaxView;
-        public HistoryContent.HistoryItem mItem;
+        public History mItem;
 
         public ViewHolder(View view) {
             super(view);

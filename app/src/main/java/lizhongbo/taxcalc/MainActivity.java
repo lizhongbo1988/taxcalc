@@ -2,6 +2,10 @@ package lizhongbo.taxcalc;
 
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -10,7 +14,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ItemFragment.OnListFragmentInteractionListener {
     private AppDatabase mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +38,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         Button calcButton = findViewById(R.id.calcBtn);
         calcButton.setOnClickListener(this);
-//        FloatingActionButton fab_setting = (FloatingActionButton) findViewById(R.id.fab_setting);
-//        fab_setting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        FloatingActionButton fab_setting = (FloatingActionButton) findViewById(R.id.fab_setting);
+        fab_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
-//        FloatingActionButton fab_history = (FloatingActionButton) findViewById(R.id.fab_history);
-//        fab_history.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "history", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        FloatingActionButton fab_history = (FloatingActionButton) findViewById(R.id.fab_history);
+        fab_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm= getSupportFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                ItemFragment itemFragment=ItemFragment.newInstance();
+                ft.add(itemFragment, "itemFragment");
+                ft.commit();
+            }
+        });
     }
 
     @Override
@@ -76,5 +83,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+    public AppDatabase getDatabase(){
+        return mDatabase;
+    }
+
+    @Override
+    public void onListFragmentInteraction(History item) {
+
     }
 }
