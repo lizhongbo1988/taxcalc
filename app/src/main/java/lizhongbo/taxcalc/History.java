@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class History {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int uid;
 
     @ColumnInfo(name = "income")

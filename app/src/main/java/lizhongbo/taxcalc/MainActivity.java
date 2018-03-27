@@ -11,7 +11,7 @@ import android.widget.Button;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private HistoryDatabase mHistroyDatabase;
+    private AppDatabase mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mHistroyDatabase = Room.databaseBuilder(getApplicationContext(),
-                        HistoryDatabase.class, "History").build();
+                mDatabase = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "calc").build();
             }
         }).start();
 
@@ -65,15 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         History history = new History();
                         history.setIncome(3500);
                         history.setTax(200);
-                        mHistroyDatabase.historyDao().insert(history);
-                        List<History> historyList = mHistroyDatabase.historyDao().getAll();
+                        mDatabase.historyDao().insert(history);
+                        List<History> historyList = mDatabase.historyDao().getAll();
                         for(History history1: historyList){
                             Log.e("hjhhh", "historyList income = " + history1.getIncome() + "  Tax = " + history1.getTax());
                         }
                     }
                 }).start();
-
-
                 break;
             default:
                 break;
