@@ -1,45 +1,21 @@
 package lizhongbo.taxcalc;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+import com.raizlabs.android.dbflow.structure.Model;
 
-/**
- * Created by flying on 2018/3/27.
- */
+import java.util.jar.Attributes;
 
-@Entity
-public class History {
-    @PrimaryKey(autoGenerate = true)
-    private int uid;
+@Table(database = AppDatabase.class)
+public class History extends BaseModel{
+    @PrimaryKey
+    int id;
 
-    @ColumnInfo(name = "income")
-    private int income;//收入
+    @Column(name = "income")
+    int income;
 
-    @ColumnInfo(name = "Tax")
-    private  int Tax; //税收
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-    public int getIncome() {
-        return income;
-    }
-
-    public void setIncome(int income) {
-        this.income = income;
-    }
-
-    public int getTax() {
-        return Tax;
-    }
-
-    public void setTax(int tax) {
-        Tax = tax;
-    }
+    @Column(name = "tax")
+    double tax;
 }

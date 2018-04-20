@@ -1,8 +1,9 @@
 package lizhongbo.taxcalc;
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
 
-@Database(entities = {History.class}, version = 1)
-public abstract class AppDatabase extends RoomDatabase {
-    public abstract HistoryDao historyDao();
+import com.raizlabs.android.dbflow.annotation.Database;
+
+@Database(name = AppDatabase.NAME, version = AppDatabase.VERSION)
+public class AppDatabase {
+    public static final String NAME = "AppDatabase";
+    public static final int VERSION = 1;
 }
