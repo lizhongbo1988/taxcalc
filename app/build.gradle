@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+//.def dbflow_version = "4.2.4"
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -26,7 +26,17 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.android.support:support-vector-drawable:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
+    // Room (use 1.1.0-beta1 for latest beta)
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // if Java use this. If using Kotlin do NOT use this.
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4"
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:4.2.4"
+    compile "com.github.Raizlabs.DBFlow:dbflow:4.2.4"
 }

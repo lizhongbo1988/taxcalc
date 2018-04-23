@@ -32,17 +32,17 @@ public class TaxRateManager {
     public static double CalcTaxRate(int beforeTaxIncome){
         List<TaxRate> taxRates = SQLite.select().from(TaxRate.class).queryList();
         int taxIncome = beforeTaxIncome - startTaxIncome;
-        if(taxIncome < taxRates.get(0).getIncome()){
+        if(taxIncome < 0){
             return 0;
         }
-        if(taxIncome > taxRates.get(taxRates.size() - 1).getIncome()){
+           if(taxIncome > taxRates.get(taxRates.size() - 1).income){
             TaxRate taxRate = taxRates.get(taxRates.size() - 1);
-            return taxRate.getIncome() * taxRate.getTaxRate() - taxRate.getQuickDeduction();
+            return taxRate.income * taxRate.taxRate - taxRate.quickDeduction;
         }
 
-        for(int i = taxRates.size() - 2; i > 0; i--){
-            if(taxIncome > taxRates.get(i).getIncome()){
-                return taxRates.get(i).getIncome() * taxRates.get(i).getTaxRate() - taxRates.get(i).getQuickDeduction();
+        for(int i = 0; i < taxRates.size() - 1; i++){
+            if(taxIncome < taxRates.get(i).income){
+                return taxIncome * taxRates.get(i).taxRate - taxRates.get(i).quickDeduction;
             }
         }
         return 0;

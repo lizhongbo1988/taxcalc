@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.calcBtn:{
-                if(!TextUtils.isEmpty(mBeforeTaxIncome.getText())){
-                    int beforeTaxIncome = Integer.getInteger(mBeforeTaxIncome.getText().toString());
+                if(!TextUtils.isEmpty(mBeforeTaxIncome.getText().toString())){
+                    int beforeTaxIncome = Integer.parseInt(mBeforeTaxIncome.getText().toString());
                     double afterTaxIncome = TaxRateManager.CalcTaxRate(beforeTaxIncome);
                     mTaxTextView.setText(Double.toString(afterTaxIncome));
                     double realIncome = beforeTaxIncome - afterTaxIncome;
