@@ -28,23 +28,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-
-
-    }
-
-    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.calcBtn:{
                 if(!TextUtils.isEmpty(mBeforeTaxIncome.getText().toString())){
                     int beforeTaxIncome = Integer.parseInt(mBeforeTaxIncome.getText().toString());
-                    double afterTaxIncome = TaxRateManager.CalcTaxRate(beforeTaxIncome);
-                    mTaxTextView.setText(Double.toString(afterTaxIncome));
-                    double realIncome = beforeTaxIncome - afterTaxIncome;
+                    double tax = TaxRateManager.CalcTaxRate(beforeTaxIncome);
+                    mTaxTextView.setText(Double.toString(tax));
+                    double realIncome = beforeTaxIncome - tax;
                     mRealIncomeTextView.setText(Double.toString(realIncome));
+                    //插入计算历史记录
+                    History history = new History(beforeTaxIncome, tax);
+                    history.insert();
                 }
             }
                 break;
