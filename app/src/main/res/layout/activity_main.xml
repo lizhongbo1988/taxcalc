@@ -96,15 +96,35 @@
                 android:gravity="center_vertical"
                 android:text="0" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/modifyTaxBtn"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:text="修改税率" />
+            <Button
+                android:id="@+id/historyBtn"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:text="历史记录" />
+            <Button
+                android:id="@+id/calcBtn"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:text="计算" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/calcBtn"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:text="计算" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

@@ -9,7 +9,7 @@ import lizhongbo.taxcalc.AppDatabase;
 
 @Table(database = AppDatabase.class)
 public class History extends BaseModel{
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     public int id;
 
     @Column(name = "income")

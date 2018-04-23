@@ -43,7 +43,7 @@ public class HistoryListAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if(convertView == null){
-            convertView = View.inflate(mContext,R.layout.history_item, parent);
+            convertView = View.inflate(mContext,R.layout.history_item, null);
             viewHolder = new ViewHolder();
             viewHolder.beforeTaxTextView = convertView.findViewById(R.id.beforeIncomeTextView);
             viewHolder.taxTextView = convertView.findViewById(R.id.taxTextView);
