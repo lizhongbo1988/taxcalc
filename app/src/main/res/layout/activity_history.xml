@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/history_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:text="税前收入(元)"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:text="税额(元)"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:text="应得收入(元)"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/history_list"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</android.support.constraint.ConstraintLayout>

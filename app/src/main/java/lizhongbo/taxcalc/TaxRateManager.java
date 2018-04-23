@@ -4,6 +4,8 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.List;
 
+import lizhongbo.taxcalc.beans.TaxRate;
+
 public class TaxRateManager {
 
     /*起征点*/

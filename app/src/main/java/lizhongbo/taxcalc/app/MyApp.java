@@ -1,18 +1,17 @@
-package lizhongbo.taxcalc;
+package lizhongbo.taxcalc.app;
 
 import android.app.Application;
-import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.List;
 
+import lizhongbo.taxcalc.TaxRateManager;
+import lizhongbo.taxcalc.beans.TaxRate;
+
 public class MyApp extends Application {
 
-//    /**起征点*/
-//    public static int startTaxIncome = 3500;
      @Override
     public void onCreate(){
          super.onCreate();

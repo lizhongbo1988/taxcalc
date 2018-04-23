@@ -1,4 +1,4 @@
-package lizhongbo.taxcalc;
+package lizhongbo.taxcalc.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import lizhongbo.taxcalc.beans.History;
+import lizhongbo.taxcalc.R;
+import lizhongbo.taxcalc.TaxRateManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
