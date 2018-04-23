@@ -53,7 +53,7 @@ public class HistoryListAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
         History history = mHistoryList.get(position);
-        viewHolder.beforeTaxTextView.setText(history.income);
+        viewHolder.beforeTaxTextView.setText(Integer.toString(history.income));
         viewHolder.taxTextView.setText(Double.toString(history.tax));
         viewHolder.afterTaxTextView.setText(Double.toString(history.income - history.tax));
         return convertView;
