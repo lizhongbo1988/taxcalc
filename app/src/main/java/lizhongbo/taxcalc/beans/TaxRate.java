@@ -9,11 +9,12 @@ import lizhongbo.taxcalc.AppDatabase;
 
 @Table(database = AppDatabase.class)
 public class TaxRate extends BaseModel{
+
     @PrimaryKey
-    public int level; //级别
+    public int start;//起始
 
     @Column
-    public int income;//所得额
+    public int end;//中止
 
     @Column
     public double taxRate; //税率
@@ -22,9 +23,9 @@ public class TaxRate extends BaseModel{
     public int quickDeduction; //快速扣除数
 
 
-    public TaxRate(int level, int income, double taxRate, int quickDeduction){
-        this.level = level;
-        this.income = income;
+    public TaxRate(int start, int end,double taxRate, int quickDeduction){
+        this.start = start;
+        this.end = end;
         this.taxRate = taxRate;
         this.quickDeduction = quickDeduction;
     }
