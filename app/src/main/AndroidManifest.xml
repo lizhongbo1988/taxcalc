@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".ui.HistoryActivity"/>
+        <activity android:name=".ui.TaxRateActivity"/>
     </application>
 
 </manifest>

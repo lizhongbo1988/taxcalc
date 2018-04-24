@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
             break;
+            case R.id.modifyTaxBtn:{
+                Intent intent = new Intent(this, TaxRateActivity.class);
+                startActivity(intent);
+            }
+            break;
             default:
                 break;
         }
