@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,10 +26,11 @@ import lizhongbo.taxcalc.TaxRateManager;
 import lizhongbo.taxcalc.app.MyApp;
 import lizhongbo.taxcalc.beans.TaxRate;
 
-public class TaxRateActivity extends AppCompatActivity implements View.OnClickListener {
+public class TaxRateActivity extends AppCompatActivity implements View.OnClickListener , AdapterView.OnItemClickListener{
     private ListView mListView;
     private TaxRateAdapter mTaxRateAdapter;
     private EditText mStartTaxEdit;
+    List<TaxRate> taxRateList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taxrate);
@@ -43,10 +46,10 @@ public class TaxRateActivity extends AppCompatActivity implements View.OnClickLi
         Button addButton = findViewById(R.id.addtaxButton);
         addButton.setOnClickListener(this);
 
-        List<TaxRate> taxRateList = SQLite.select().from(TaxRate.class).queryList();
+        taxRateList = SQLite.select().from(TaxRate.class).queryList();
         mTaxRateAdapter.setTaxRateList(taxRateList);
         mListView.setAdapter(mTaxRateAdapter);
-
+        mListView.setOnItemClickListener(this);
         mStartTaxEdit = findViewById(R.id.startTaxEditText);
         mStartTaxEdit.setText(Integer.toString(TaxRateManager.startTaxIncome));
         Button saveStartTaxButton = findViewById(R.id.saveStartTaxButton);
@@ -70,6 +73,14 @@ public class TaxRateActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(taxRateList != null){
+            TaxRate taxRate = taxRateList.get(position);
+            Log.e("taxRate", "onItemClick: taxRate = "  + taxRate.level);
         }
     }
 }
