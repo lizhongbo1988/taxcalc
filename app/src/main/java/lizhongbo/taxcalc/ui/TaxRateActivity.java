@@ -2,6 +2,7 @@ package lizhongbo.taxcalc.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 import android.widget.ListView;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -17,6 +18,7 @@ public class TaxRateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taxrate);
+
         mListView = findViewById(R.id.taxrate_list);
         mTaxRateAdapter = new TaxRateAdapter(this);
     }
