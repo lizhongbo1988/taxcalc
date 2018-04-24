@@ -46,6 +46,7 @@ public class TaxRateAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = View.inflate(mContext, R.layout.taxrate_item, null);
             viewHolder = new ViewHolder();
+            viewHolder.levelTextView = convertView.findViewById(R.id.levelTextView);
             viewHolder.startTextView = convertView.findViewById(R.id.startTextView);
             viewHolder.endTextView = convertView.findViewById(R.id.endTextView);
             viewHolder.taxRateTextView = convertView.findViewById(R.id.taxrateTextView);
@@ -55,14 +56,21 @@ public class TaxRateAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         TaxRate taxRate = taxRateList.get(position);
+        viewHolder.levelTextView.setText(Integer.toString(taxRate.level));
         viewHolder.startTextView.setText(Integer.toString(taxRate.start));
         viewHolder.endTextView.setText(Integer.toString(taxRate.end));
+        if(taxRate.end == Integer.MAX_VALUE){
+            viewHolder.endTextView.setText("");
+            viewHolder.startTextView.setTextSize(15);
+            viewHolder.startTextView.setText(Integer.toString(taxRate.start) + " 以上");
+        }
         viewHolder.taxRateTextView.setText(Double.toString(taxRate.taxRate));
         viewHolder.quickDeductionTextView.setText(Integer.toString(taxRate.quickDeduction));
         return convertView;
     }
 
     public class ViewHolder{
+        TextView levelTextView;
         TextView startTextView;
         TextView endTextView;
         TextView taxRateTextView;
