@@ -1,5 +1,6 @@
 package lizhongbo.taxcalc.ui;
 
+import android.app.DialogFragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,7 @@ import lizhongbo.taxcalc.TaxRateManager;
 import lizhongbo.taxcalc.app.MyApp;
 import lizhongbo.taxcalc.beans.TaxRate;
 
-public class TaxRateActivity extends AppCompatActivity implements View.OnClickListener , AdapterView.OnItemClickListener{
+public class TaxRateActivity extends AppCompatActivity implements View.OnClickListener , AdapterView.OnItemClickListener, TaxRateDialogFragment.OnChangeListener{
     private ListView mListView;
     private TaxRateAdapter mTaxRateAdapter;
     private EditText mStartTaxEdit;
@@ -34,8 +35,6 @@ public class TaxRateActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taxrate);
-
-
     }
 
     @Override
@@ -60,6 +59,11 @@ public class TaxRateActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addtaxButton:
+            {
+                TaxRateDialogFragment taxRateDialogFragment = new TaxRateDialogFragment();
+                taxRateDialogFragment.setOnChangeListener(this);
+                taxRateDialogFragment.show(getFragmentManager(), "taxRate");
+            }
                 break;
             case R.id.saveStartTaxButton:
                 String s = mStartTaxEdit.getText().toString();
@@ -81,6 +85,23 @@ public class TaxRateActivity extends AppCompatActivity implements View.OnClickLi
         if(taxRateList != null){
             TaxRate taxRate = taxRateList.get(position);
             Log.e("taxRate", "onItemClick: taxRate = "  + taxRate.level);
+            TaxRateDialogFragment taxRateDialogFragment = new TaxRateDialogFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("taxRate", taxRate);
+            taxRateDialogFragment.setArguments(bundle);
+            taxRateDialogFragment.setOnChangeListener(this);
+            taxRateDialogFragment.show(getFragmentManager(), "taxRate");
         }
+    }
+
+    @Override
+    public void delTax(TaxRate taxRate) {
+        taxRate.delete();
+    }
+
+    @Override
+    public void saveTax(TaxRate taxRate) {
+        taxRate.delete();
+        taxRate.insert();
     }
 }
